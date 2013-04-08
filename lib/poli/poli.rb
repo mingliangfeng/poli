@@ -33,7 +33,7 @@ module Poli
         response = HTTParty.post @settings['get_financial_institutions'], :body => body, :headers => {'Content-type' => 'text/xml'}
         institutions = response.parsed_response["GetFinancialInstitutionsResponse"]
         banks = []
-        if institutions and institutions["FinancialInstitutionList"]["FinancialInstitution"]
+        if institutions and institutions["FinancialInstitutionList"] and institutions["FinancialInstitutionList"]["FinancialInstitution"]
           institutions["FinancialInstitutionList"]["FinancialInstitution"].each do |institute|
             banks << institute["FinancialInstitutionName"]
           end
@@ -44,9 +44,6 @@ module Poli
       def initiate_transaction(amount, merchant_ref, ip)
         body = build_initiate_xml(amount, merchant_ref, ip)
         response = HTTParty.post @settings['initiate_transaction'], :body => body, :headers => {'Content-type' => 'text/xml'}
-        puts "----------------"
-        puts response
-        puts "----------------"
         poli_transfer = response.parsed_response["InitiateTransactionResponse"]
         poli_transfer["Transaction"] if poli_transfer
       end
@@ -54,9 +51,6 @@ module Poli
       def get_transaction(token)
         body = build_transaction_xml(token)
         response = HTTParty.post @settings['get_transaction'], :body => body, :headers => {'Content-type' => 'text/xml'}
-        puts "----------------"
-        puts response
-        puts "----------------"
         poli_transaction = response.parsed_response["GetTransactionResponse"]
         return [poli_transaction["Errors"], poli_transaction["TransactionStatusCode"], poli_transaction["Transaction"]] if poli_transaction
       end
