@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+# -*- mode: ruby -*-
+
+require 'poli/runner'
+
+Poli::Runner.start

@@ -1,0 +1,31 @@
+defaults: &DEFAULTS
+  currency_code: "AUD"
+  timeout: 900
+
+  homepage_url: http://localhost:3000
+  notification_url: http://localhost:3000/poli/notification
+  checkout_url: http://localhost:3000/profile/poli/checkout
+  successful_url: http://localhost:3000/profile/poli/successful
+  unsuccessful_url: http://localhost:3000/profile/poli/unsuccessful
+  
+  initiate_transaction: https://merchantapi.apac.paywithpoli.com/MerchantAPIService.svc/Xml/transaction/initiate
+  get_transaction: https://merchantapi.apac.paywithpoli.com/MerchantAPIService.svc/Xml/transaction/query
+  get_financial_institutions: https://merchantapi.apac.paywithpoli.com/MerchantAPIService.svc/Xml/banks
+  
+  merchant_code: 1111111
+  authentication_code: 222222222
+
+development:
+  <<: *DEFAULTS
+  merchant_code: 1111111
+  authentication_code: 222222222
+
+test:
+  <<: *DEFAULTS
+  merchant_code: 1111111
+  authentication_code: 222222222
+  
+production:
+  <<: *DEFAULTS
+  merchant_code: 1111111
+  authentication_code: 222222222
