@@ -23,7 +23,7 @@ Or install it yourself as:
 
     > poli -v
 
-2. generate poli configuration file, and change it to use your merchant code and authentication code:
+2. generate poli configuration file, and change it to use your poli information, e.g. merchant code and authentication code:
 
     > poli generate
    
